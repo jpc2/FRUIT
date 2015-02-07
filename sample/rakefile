@@ -1,0 +1,42 @@
+require 'rubygems'
+require 'fruit_processor'
+include Rake::DSL if defined?(Rake::DSL)
+load "../rake_base.rb"
+load '../rake_base_deps.rb'
+
+
+if $ar_ok
+  task :test => :compile
+  task :valgrind => :compile
+end
+
+task :compile do
+  Dir.chdir("src") {
+    sh 'rake'
+  }
+end
+
+task :test  do
+  rake_opt = " -f rakefile_mingw " if !$ar_ok
+  Dir.chdir("test") {
+    sh "rake #{rake_opt} test"
+  }
+end
+
+task :coverage do
+  rake_opt = " -f rakefile_mingw " if !$ar_ok
+  Dir.chdir("test") {
+    sh "rake #{rake_opt} coverage"
+  }
+end
+
+
+task :valgrind do
+  Dir.chdir("test") {
+    sh 'rake'
+    sh 'valgrind --leak-check=full ./calculator_fruit_driver'
+ }
+end
+
+task :default => [:test]
+

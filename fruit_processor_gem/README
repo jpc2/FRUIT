@@ -1,0 +1,8 @@
+The fruit_processor gem works with fortranxunit on sourceforge
+
+To generate and install gem:
+rake install
+
+To install existing gem:
+gem install pkg/fruit_processor-(version number).gem
+

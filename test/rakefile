@@ -1,0 +1,18 @@
+require 'rubygems'
+require 'fruit_processor'
+require 'rake/clean'
+include Rake::DSL if defined?(Rake::DSL)
+load "../rake_base.rb"
+
+$goal = 'fruit_driver'
+
+$lib_bases = {'fruit' => FruitProcessor.new.build_dir}
+
+# File dependencies go here ...
+file 'fruit_driver.o' => ['fruit_data_test.o', 'fruit_test.o', 'fruit_util_test.o']
+#file 'fruit_data_test.o' => ['fruit_data_test.f90']
+#file 'fruit_test.o' => ['fruit_test.f90']
+
+
+load "../rake_base_deps.rb"
+

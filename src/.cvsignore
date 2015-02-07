@@ -1,0 +1,6 @@
+.project
+*.o
+*.mod
+fruittest
+
+*.a

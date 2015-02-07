@@ -1,0 +1,26 @@
+require 'rubygems'
+require 'rake/clean'
+
+desc "sample unit test"
+task :test do
+  Dir.chdir "build_unittest" do
+    sh 'rake'
+  end
+end
+
+task :coverage do
+  Dir.chdir "build_unittest" do
+    sh 'rake coverage'
+  end
+end
+
+task :main do
+  Dir.chdir "build_main" do
+    sh 'rake'
+  end
+end
+
+task :default => [:main, :test]
+
+CLEAN.include(FileList['**/*.o', '**/*.mod', '**/*.exe'])
+CLEAN.include(FileList['fruit_driver_gen.f90', 'fruit_basket_gen.f90'])

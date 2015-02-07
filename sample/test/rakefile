@@ -1,0 +1,53 @@
+require 'rubygems'
+require 'fruit_processor'
+include Rake::DSL if defined?(Rake::DSL)
+load "../../rake_base.rb"
+
+# Add this line at the beginning if there are generated code involved
+fp = FruitProcessor.new
+# fp.shuffle = true        #if true order of methods will be random
+fp.pre_process             #It generates fruit_*_gen.f90
+
+$goal='calculator_fruit_driver'
+
+# the link of the executable depends on libfruit.a, and libcalculator.a
+# spefify where the files are here:
+# It is in array, because order matters
+$lib_bases = [
+['fruit', fp.build_dir],
+['calculator', fp.build_dir]
+]
+
+# if $build_dir is defined, then use build_dir
+
+#-------- dependencies
+# Load rake_estimate.rb to estimate dependency.
+load "../../rake_estimate.rb"  #Load this after fruit_*_gen.f90 generated.
+load "../../rake_base_deps.rb" #It uses SRC and OBJ updated by rake_estimate.rb
+
+#-------
+# Otherwise
+# if one module has to be compiled after another module, specify like this:
+#file ['module_b_test.o']  => 'calculator_test.o'
+#load "../../rake_base_deps.rb"
+#-------
+
+task :default => [:spec, :test]
+
+task :test => $goal do
+  sh "./#{$goal}"
+end
+
+task :coverage => $for_coverage.clone.push(:test) do
+  if $gcov
+    sh "gcov " + $for_coverage.join(" ")
+  end
+	if $prof_genx
+	  sh "profmerge"
+	  sh "codecov"
+	end
+end
+
+
+
+

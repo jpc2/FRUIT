@@ -1,0 +1,29 @@
+require 'rubygems'
+require 'fruit_processor'
+require 'rake/clean'
+include Rake::DSL if defined?(Rake::DSL)
+load '../rake_base.rb'
+
+require 'misc' #just for os_install
+
+$build_dir = "."
+$goal = "fruit_driver_3min.exe"
+
+task :default => [:test]
+
+task :test => [:clean] do
+  #following the procedure in "Add Fruit to Your Diet in 3 Minutes"
+  os_install("../src/fruit.f90", "fruit.f90")
+  os_install("../src/fruit_util.f90", "fruit_util.f90")
+  sh "#{$compiler} #{$option} -c fruit_util.f90"
+  sh "#{$compiler} #{$option} -c fruit.f90"
+  sh "#{$compiler} #{$option} -c calculator.f90"
+  sh "#{$compiler} #{$option} -c calculator_test.f90"
+  sh "#{$compiler} #{$option} -c fruit_driver.f90"
+  sh "#{$linker} #{$linker_option} #{$option_exe}#{$goal} *.#{$ext_obj}"
+  sh "./#{$goal}"
+end
+
+CLEAN.include(FileList["fruit.f90", "fruit_util.f90", $goal])
+
+

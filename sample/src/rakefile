@@ -1,0 +1,16 @@
+require 'rubygems'
+require 'fruit_processor'
+include Rake::DSL if defined?(Rake::DSL)
+load "../../rake_base.rb"
+load "../../rake_base_deps.rb"
+
+$goal='libcalculator.a'
+
+# if $build is specified, then use that dir, instead of FruitProcessor.new.build_dir below
+$lib_bases = [['fruit', FruitProcessor.new.build_dir]]
+
+# if there are other -I modules to include
+#$inc_dirs = ['/opt/lib']
+
+
+

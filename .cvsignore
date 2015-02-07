@@ -1,0 +1,7 @@
+.project
+*.o
+*.mod
+*.a
+build
+ROOT_ANCHOR
+a

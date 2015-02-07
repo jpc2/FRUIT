@@ -1,0 +1,36 @@
+require 'rubygems'
+require 'fruit_processor'
+require 'rake/clean'
+include Rake::DSL if defined?(Rake::DSL)
+load "../rake_base.rb"
+
+$goal = 'libfruit.a'
+
+# After rake clobber, fruit.f90 is absent.
+# fruit.f90 must be generated.
+# before the following SRC=.FileList.. statment, 
+
+if ! File.exist?("fruit.f90")
+  sh 'ruby fruit_f90_generator.rb'
+end
+
+SRC = FileList['fruit_util.f90', 'fruit.f90']
+OBJ = SRC.ext($ext_obj)  # $ext_obj is either "o" or "obj"
+
+load "../rake_base_deps.rb"  #It use SRC and OBJ
+
+# File dependencies go here ...
+#file 'libfruit.a' => ['fruit.o', 'fruit_utility.o']
+file 'fruit.' + $ext_obj => ['fruit.f90', 'fruit_util.' + $ext_obj]
+
+desc "build #{$goal}"
+file $goal => 'fruit.f90'
+
+desc "update fruit.f90"
+file 'fruit.f90' => ["fruit_f90_generator.rb", "fruit_f90_source.txt"] do
+  sh 'ruby fruit_f90_generator.rb'
+end
+
+CLOBBER.include(FileList['fruit.f90'])
+
+

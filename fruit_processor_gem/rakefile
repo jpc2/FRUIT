@@ -1,0 +1,75 @@
+require 'rubygems'
+
+version = `rake --version`
+version =~ /ersion +([0-9]+)\.([0-9]+)\./
+major = $1.to_i
+minor = $2.to_i
+if (major < 1 and minor < 9)
+  p      'rake/gempackagetask'
+  require 'rake/gempackagetask'
+else
+  p       'rubygems/package_task'
+  require 'rubygems/package_task'
+end
+
+require 'rake/clean'
+
+CLEAN.include(
+  FileList['test/*_gen.f90'],
+  FileList['test/**/*_gen.f90']
+)
+CLOBBER.include(FileList['pkg/*.gem'])
+
+spec = Gem::Specification.new do |s|
+  s.platform  =   Gem::Platform::RUBY
+  s.name      =   "fruit_processor"
+  s.version   =   "3.3.6"
+  s.author    =   "Andrew Chen"
+  s.email     =   "meihome meihome.com"
+  s.summary   =   "A package for fortranxunit (fruit)."
+
+  s.files     =   FileList[
+    'lib/*.rb', 'test/*.rb',
+    'test/*_test.f90', 'test/*_test.f03', 'test/for_test_gather_specs.txt',
+    'test/os_install_from.txt',
+    'test/cause_error/*.f90',
+    'test/for_test_picker/*.f90',
+    'test/subdir/*.f90',
+    'test/subdir2/*.f90',
+  ].to_a
+
+  s.require_path  =   "lib"
+  s.test_files = Dir.glob('tests/*.rb')
+  s.has_rdoc  =   true
+  s.extra_rdoc_files  =   ["README"]
+  s.homepage  = "http://sourceforge.net/projects/fortranxunit/"
+  s.description = "The fruit_processor gem works with fortranxunit (fruit) on sourceforge."
+end
+
+if (major < 1 and minor < 9)
+  Rake::GemPackageTask.new(spec) do |pkg|
+    pkg.need_tar = true
+  end
+else
+  Gem::PackageTask.new(spec) do |pkg|
+    pkg.need_tar = true
+  end
+end
+
+task :default => [:clean, :test, "pkg/#{spec.name}-#{spec.version}.gem"] do
+  puts "generated latest version"
+end
+
+task :install => :default do
+  str = "gem install pkg/#{spec.name}-#{spec.version}.gem"
+  p str
+  sh "gem install pkg/#{spec.name}-#{spec.version}.gem"
+end
+
+task :test do
+  Dir.chdir("test") do
+    sh "ruby fruit_processor_test.rb"
+    sh "ruby misc_test.rb"
+  end
+end
+

@@ -1,0 +1,42 @@
+require 'rubygems'
+require 'net/ftp'
+
+version='2.7'
+pkg_name="fruit_#{version}"
+#dir_name="sourceforge_fruit"
+dir_name="fruit"
+
+task :default => [:pack, :publish]
+
+task :clean_up do
+  sh "cd #{dir_name};rake clobber"
+  sh "cd #{dir_name}/fruit_processor_gem;rake"
+  sh "rm -rf #{pkg_name}"
+  sh "cp -R #{dir_name} #{pkg_name}"
+  sh "find #{pkg_name} | grep -i cvs | perl -nle 'system \"rm -rf $_\"'"
+  sh "rm -rf #{pkg_name}/.loadpath"
+  sh "rm -rf #{pkg_name}/.project"
+  sh "rm -rf #{pkg_name}/*_AHCHOR"
+end
+
+task :pack => :clean_up do
+  sh "tar -zcvf #{pkg_name}.tgz #{pkg_name}"
+  #sh "tar -cvf #{pkg_name}.tar #{pkg_name}"
+  sh "zip -r #{pkg_name}.zip #{pkg_name}"
+end
+
+desc "Publish package"
+task :publish => :pack do
+  Net::FTP.open("upload.sourceforge.net", 
+     "ftp", 
+     #ENV['USER']+"@"+ENV['HOSTNAME']) {
+     "fruit@test.com") {
+     |ftpclient|
+     ftpclient.passive = true
+     ftpclient.chdir "incoming"
+     Dir["*_#{version}.{tar,tar.gz,tgz,zip}"].each {
+       |e|
+       ftpclient.putbinaryfile(e, File.basename(e))
+     }
+  }
+end
