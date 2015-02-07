@@ -38,7 +38,7 @@ class FruitRakeEstimate
       @source_dirs.each{|dir|
         dir2 = Pathname.new(dir).cleanpath.to_s
 
-        Dir::glob("#{dir2}/*.#{fxx}").each{|filename|  
+        Dir::glob("#{dir2}/*.#{fxx}").each{|filename|
           @all_f << Pathname(filename).cleanpath.to_s
         }
       }
@@ -256,7 +256,7 @@ class FruitRakeEstimate
 
       if @show_info
         if @forward    [ f_basename ].size > 0
-          puts "#{f_basename} needs " 
+          puts "#{f_basename} needs "
           puts "  modules: " + @forward_mod[ f_basename ].join(" ")
           puts "  external:" + @forward_ext[ f_basename ].join(" ")
         end
@@ -333,7 +333,7 @@ class FruitRakeEstimate
       puts "    " + needed.join(" ").to_s
       puts "  could not order dependencies of "
       puts "    " + (needed - ordered).join(" ").to_s
-      ordered_fallback = ordered       
+      ordered_fallback = ordered
       (needed - ordered).each{|f|
         ordered_fallback << f
       }

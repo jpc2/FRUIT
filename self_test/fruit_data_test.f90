@@ -23,7 +23,7 @@ contains
 
   subroutine test_assert_equals_float
     implicit none
-    
+
     real :: variable = 2.3
     real :: result = 2.3
     character(len = 500) :: line_read
@@ -44,7 +44,7 @@ contains
 
   subroutine test_assert_equals_double
     implicit none
-    
+
     double precision :: variable = 2.3d0
     double precision :: result   = 2.3d0
     character(len = 500) :: line_read
@@ -85,18 +85,18 @@ contains
       call assert_equals("..F.F", line_read)
     close (20)
   end subroutine test_assert_equals_complex
-  
+
   subroutine test_unit_name
     implicit none
-    
+
     character(len=300) :: result
-    
+
     call set_unit_name ('sample_unit_name')
     call get_unit_name (result)
     call assert_equals ('sample_unit_name', trim(result))
-    
+
   end subroutine test_unit_name
-  
+
   subroutine test_assert_should_handle_int_and_int_and_message
     character(len = 500) :: line_read
 

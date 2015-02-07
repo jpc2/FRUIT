@@ -1,4 +1,13 @@
 -----------
+FRUIT 3.3.7.1
+-----------
+
+Forked from Sourceforge version 3.3.7.
+  Moved to .git repository.
+  Add .gitignore files where needed.
+  Some formatting changes in various files.
+
+-----------
 FRUIT 3.3.7
 -----------
 
@@ -14,14 +23,14 @@ Samples added:
     in the tester code.
 
 Subroutines to surppress output of "." added.
-  After 
+  After
     call fruit_hide_dots
   dots are not written.
-  To output dots again, 
+  To output dots again,
     call fruit_show_dots
   can be used.
   These calls are tested in a sample "sample_selective".
-  
+
 No changes in fruit_processor in this version.
 Version number of fruit_processor remains 3.3.6.
 
@@ -32,7 +41,7 @@ FRUIT 3.3.6
 
 Previous version (3.3.5) could not compile
 external subroutines having circular dependencies.
-See  
+See
   sample_circular_dep
 .
 Fruit 3.3.6 tries to build it
@@ -46,11 +55,11 @@ FRUIT 3.3.5
 -----------
 
 Samples of testing external subroutine and
-external functions are is at 
+external functions are is at
   sample_exteranl_sub/
   sample_exteranl_func/
 
-External functions tested must be 
+External functions tested must be
 specified in interface block or external statement of
 tester code.
 Otherwise FRUIT cannot estimate dependencies
@@ -84,7 +93,7 @@ FRUIT 3.3.2
 In assert_not_equals subroutines,
 inequality comparison for real numbers
   if (real_number_1 /= real_number_2) then ...
-was used. 
+was used.
 (gfortran 4.8.2 with -Wextra option warns about it.)
 The inequality is replaced by inequalities
   if (real_1 < real_2 .or. real_1 > real_2) then...
@@ -105,7 +114,7 @@ FRUIT 3.3.0
 FRUIT 3.3.0 can test codes using MPI.
 Sample is in directry sample_mpi.
 Test code is in self_test_mpi.
-  
+
 Tested on
   Ubuntu 12.04 + OpenMPI
   Windows 7 + MPICH2 (mpich2-1.4.1p1-win-ia32)

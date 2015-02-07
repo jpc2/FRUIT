@@ -22,8 +22,8 @@ module RakeBase
   result = `#{where_or_which} mpif90 2>&1`
   mpif90_exist = true if $?.to_i == 0
 
-  if RUBY_PLATFORM =~ /linux/i or 
-     RUBY_PLATFORM =~ /cygwin/i or 
+  if RUBY_PLATFORM =~ /linux/i or
+     RUBY_PLATFORM =~ /cygwin/i or
      RUBY_PLATFORM =~ /darwin/i
 
     if mpif90_exist

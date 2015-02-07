@@ -51,11 +51,11 @@ class FruitProcessorTest < Test::Unit::TestCase
           end module when_removed_test
         END
       }
-  
+
       fp = FruitProcessor.new
       fp.load_files   dir
       fp.fruit_picker dir
-  
+
       # puts "-------"
       if_test_first = false
       if_test_second = false
@@ -456,7 +456,7 @@ class FruitProcessorTest < Test::Unit::TestCase
     @fixture.create_driver
     timestamp_driver_2 = File.mtime(@@driver).to_i
 
-    assert_equal(timestamp_driver_2, timestamp_driver, 
+    assert_equal(timestamp_driver_2, timestamp_driver,
       "modification time is that of the older driver file.")
   end
 

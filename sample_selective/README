@@ -3,7 +3,7 @@ This sample demonstrates that
 fruit_basket_gen.f90 calls only specifiled testers (*_test.f90).
 
 While there are two tester files
-  constant_test.f90 and 
+  constant_test.f90 and
   mydict_test.f90,
 only the latter is specified in rakefile as
 

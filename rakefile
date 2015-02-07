@@ -30,9 +30,9 @@ task :default => [
   :sample_selective,
   :sample_selective_main,
   :sample_multi_dir,
-  :sample_external_sub, 
-  :sample_external_func, 
-  :sample_circular_dep, 
+  :sample_external_sub,
+  :sample_external_func,
+  :sample_circular_dep,
   :sample_exit_at_fail,
   :coverage,
   :self_test_xml

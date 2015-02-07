@@ -24,7 +24,7 @@ contains
   subroutine test_to_s_should_convert_real_into_string
     real :: reread
     character(len = 500) :: string
-    
+
   !  call assert_equals ('1.000000', to_s(1.0))
     string = to_s(1.0)
     read(string, *) reread

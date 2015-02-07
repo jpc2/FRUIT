@@ -20,7 +20,7 @@ contains
   subroutine test_including_one_failure
     use fruit
     use calculator, only: add
-    
+
     integer:: result
 
     call add (0, 0, result)

@@ -8,7 +8,7 @@ subroutine uppercase(ch_orig, ch_upper)
   & atoz_lower = "abcdefghijklmnopqrstuvwxyz"
   character(len = 26), parameter :: &
   & atoz_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  
+
   integer :: ith
 
   ith = scan(ch_orig, atoz_lower)

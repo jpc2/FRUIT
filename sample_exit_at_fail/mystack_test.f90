@@ -24,7 +24,7 @@ contains
     print *, "Because fruit_if_failed should be true,"
     print *, "this line should not be executed."
     stop
-  end subroutine test_mystack_new 
+  end subroutine test_mystack_new
 
   subroutine test_mystack_push
     use mystack

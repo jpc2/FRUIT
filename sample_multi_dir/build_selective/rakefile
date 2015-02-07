@@ -16,7 +16,7 @@ fp = FruitProcessor.new
 #--- in this case coverage of ifort fails.
 #    Maybe because no lines in def_upper_lower.f90 are executed.
 # fp.process_only = FileList[
-#   "def_upper_lower_test.f90", 
+#   "def_upper_lower_test.f90",
 # ] #only files here are processed.
 
 fp.process_only = FileList[

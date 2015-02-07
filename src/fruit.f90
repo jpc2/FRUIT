@@ -273,7 +273,7 @@ module fruit
      module procedure add_fail_
      module procedure add_fail_unit_
   end interface
- 
+
   public ::           addFail
   interface           addFail
      module procedure add_fail_
@@ -412,12 +412,12 @@ module fruit
   interface           fruit_if_case_failed
     module procedure  fruit_if_case_failed_
   end interface
- 
+
   public ::           fruit_hide_dots
   interface           fruit_hide_dots
     module procedure  fruit_hide_dots_
   end interface
- 
+
   public ::           fruit_show_dots
   interface           fruit_show_dots
     module procedure  fruit_show_dots_
@@ -478,16 +478,16 @@ contains
         write(XML_OPEN, '(      "failures=""1"" " )', advance = "no")
         write(XML_OPEN, '(      "name=""", a, """ ")', advance = "no") "name of test suite"
         write(XML_OPEN, '(      "id=""1"">")')
-  
+
         write(XML_OPEN, &
         &  '("    <testcase name=""", a, """ classname=""", a, """ time=""", a, """>")') &
         &  "dummy_testcase", "dummy_classname", "0"
-  
+
         write(XML_OPEN, '(a)', advance = "no") "      <failure type=""failure"" message="""
         write(XML_OPEN, '(a)', advance = "no") "FRUIT did not generate regular content of result.xml."
         write(XML_OPEN, '(a)')                 """/>"
         write(XML_OPEN, '("    </testcase>")')
-  
+
         write(XML_OPEN, '("  </testsuite>")')
         write(XML_OPEN, '("</testsuites>")')
       close(XML_OPEN)
@@ -950,7 +950,7 @@ contains
     logical,      intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = '[' // trim(strip(case_name)) // ']: ' 
+    msg = '[' // trim(strip(case_name)) // ']: '
     if (if_is) then
       msg = trim(msg) //     'Expected'
     else
@@ -1141,7 +1141,7 @@ contains
   subroutine assert_eq_logical_(var1, var2, message)
 
     logical, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
 
         if (var1 .neqv. var2) then
@@ -1159,7 +1159,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     logical, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if (var1(i) .neqv. var2(i)) then
@@ -1177,7 +1177,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     logical, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1196,7 +1196,7 @@ contains
   subroutine assert_eq_string_(var1, var2, message)
 
     character (len = *), intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
 
         if (trim(strip(var1)) /= trim(strip(var2))) then
@@ -1214,7 +1214,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     character (len = *), intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
@@ -1232,7 +1232,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     character (len = *), intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1251,7 +1251,7 @@ contains
   subroutine assert_eq_int_(var1, var2, message)
 
     integer, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
 
         if (var1 /= var2) then
@@ -1269,7 +1269,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     integer, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if (var1(i) /= var2(i)) then
@@ -1287,7 +1287,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     integer, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1306,7 +1306,7 @@ contains
   subroutine assert_eq_real_(var1, var2, message)
 
     real, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
 
         if ((var1 < var2) .or. (var1 > var2)) then
@@ -1341,7 +1341,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     real, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
@@ -1377,7 +1377,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     real, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1416,7 +1416,7 @@ contains
   subroutine assert_eq_double_(var1, var2, message)
 
     double precision, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
 
         if ((var1 < var2) .or. (var1 > var2)) then
@@ -1451,7 +1451,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     double precision, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
@@ -1487,7 +1487,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     double precision, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1526,7 +1526,7 @@ contains
   subroutine assert_eq_complex_(var1, var2, message)
 
     complex(kind=kind(1.0D0)), intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
 
         if ((real (var1) < real (var2)) .or. &
@@ -1564,7 +1564,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if ((real (var1(i)) < real (var2(i))) .or. &
@@ -1603,7 +1603,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1645,7 +1645,7 @@ contains
   subroutine assert_not_equals_logical_(var1, var2, message)
 
     logical, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1669,7 +1669,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     logical, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1693,7 +1693,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     logical, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1718,7 +1718,7 @@ contains
   subroutine assert_not_equals_string_(var1, var2, message)
 
     character (len = *), intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1742,7 +1742,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     character (len = *), intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1766,7 +1766,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     character (len = *), intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1791,7 +1791,7 @@ contains
   subroutine assert_not_equals_int_(var1, var2, message)
 
     integer, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1815,7 +1815,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     integer, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1839,7 +1839,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     integer, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1864,7 +1864,7 @@ contains
   subroutine assert_not_equals_real_(var1, var2, message)
 
     real, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1911,7 +1911,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     real, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1959,7 +1959,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     real, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2010,7 +2010,7 @@ contains
   subroutine assert_not_equals_double_(var1, var2, message)
 
     double precision, intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2057,7 +2057,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     double precision, intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2105,7 +2105,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     double precision, intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2156,7 +2156,7 @@ contains
   subroutine assert_not_equals_complex_(var1, var2, message)
 
     complex(kind=kind(1.0D0)), intent (in) :: var1, var2
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2206,7 +2206,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2257,7 +2257,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
-    
+
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 

@@ -119,15 +119,15 @@ class FruitRakeEstimateTest < Test::Unit::TestCase
 ##    esti.source_dirs = [dir, ]
 ##    esti.set_all_f
 ##
-##    assert(esti.all_f.include?(dir + "ext_func_test.f90"), 
+##    assert(esti.all_f.include?(dir + "ext_func_test.f90"),
 ##      "should include #{dir}ext_func_test.f90")
-##    assert(esti.all_f.include?(dir + "src_with_ext_func.f90"), 
+##    assert(esti.all_f.include?(dir + "src_with_ext_func.f90"),
 ##      "should include src_with_ext_func.f90")
 ##
 ##    forward = esti.set_forward
 ##    assert_equal(
-##             ["src_with_ext_func.f90"], 
-##      forward["ext_func_test.f90"], 
+##             ["src_with_ext_func.f90"],
+##      forward["ext_func_test.f90"],
 ##      "ext_func_test.f90 needs src_with_ext_func.f90"
 ##    )
 ##  end
@@ -141,8 +141,8 @@ class FruitRakeEstimateTest < Test::Unit::TestCase
 ##
 ##    assert_equal(
 ##      [
-##        "src_with_ext_func.f90", 
-##        "ext_func_test.f90", 
+##        "src_with_ext_func.f90",
+##        "ext_func_test.f90",
 ##      ].sort,
 ##      esti.get_needed(["ext_func_test.f90"]).sort
 ##    )
@@ -155,31 +155,31 @@ class FruitRakeEstimateTest < Test::Unit::TestCase
     esti.source_dirs = [dir, ]
     esti.set_all_f
 
-    assert(esti.all_f.include?(dir + "file_with_ext_sub_test.f90"), 
+    assert(esti.all_f.include?(dir + "file_with_ext_sub_test.f90"),
       "should include #{dir}file_with_ext_sub.f90")
-    assert(esti.all_f.include?(dir + "file_with_ext_sub.f90"), 
+    assert(esti.all_f.include?(dir + "file_with_ext_sub.f90"),
       "should include file_with_ext_sub.f90")
-    assert(esti.all_f.include?(dir + "some_module.f90"), 
+    assert(esti.all_f.include?(dir + "some_module.f90"),
       "should include file_with_ext_sub.f90")
 
     forward = esti.set_forward
     assert_equal(
-             ["some_module.f90"], 
-      forward["file_with_ext_sub.f90"], 
+             ["some_module.f90"],
+      forward["file_with_ext_sub.f90"],
       "file_with_ext_sub.f90 needs some_module.f90"
     )
 
     assert_equal(
-             ["file_with_ext_sub.f90", "abc_module.f90"].sort, 
-      forward["file_with_ext_sub_test.f90"].sort, 
+             ["file_with_ext_sub.f90", "abc_module.f90"].sort,
+      forward["file_with_ext_sub_test.f90"].sort,
       "file_with_ext_sub_test.f90 needs file_with_ext_sub.f90"
     )
 
     assert_equal(
       [
-        "abc_module.f90", 
-        "file_with_ext_sub.f90", 
-        "file_with_ext_sub_test.f90", 
+        "abc_module.f90",
+        "file_with_ext_sub.f90",
+        "file_with_ext_sub_test.f90",
         "some_module.f90"
       ].sort,
       esti.get_needed(["file_with_ext_sub_test.f90"]).sort

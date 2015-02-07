@@ -36,7 +36,7 @@ contains
     character(len = *), intent(in) :: val
     integer :: i
     logical :: if_set
- 
+
     if_set = .false.
     do i = 1, a_dict%num_keys
       if (a_dict%keys(i) == key) then
@@ -64,7 +64,7 @@ contains
     do i = 1, a_dict%num_keys
       if (a_dict%keys(i) == key) then
         got = a_dict%values(i)
-        return 
+        return
       endif
     enddo
     got = "null"
@@ -91,7 +91,7 @@ contains
     allocate(a_dict%keys(  i * 2))
     allocate(a_dict%values(i * 2))
     a_dict%keys(1:i)   = tmp_keys(1:i)
-    a_dict%values(1:i) = tmp_values(1:i) 
+    a_dict%values(1:i) = tmp_values(1:i)
   end subroutine extend
 end module mydict
 

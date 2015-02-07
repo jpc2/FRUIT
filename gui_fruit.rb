@@ -31,7 +31,7 @@ class GuiWindow
       state "disabled"
     }
     #-------- bottom frame ------
-    
+
     #-------- top frame ------
     frame_top = TkFrame.new(nil){
       pack(:fill => :x, :side => :top)
@@ -52,7 +52,7 @@ class GuiWindow
       state "disabled"
     }
     #-------- top frame ------
-    
+
     #======== middle paned ========v
     paned_mid = TkPanedwindow.new(:orient => :horizontal){
       pack("side" => "top", "fill" => "both", "expand" => 1)
@@ -60,21 +60,21 @@ class GuiWindow
       sashwidth 3
       sashrelief "raised"
     }
-    
-    
+
+
     #--------- hidari frame --------
     frm_left = TkFrame.new{ }
-    
+
     frm_left_sita = TkFrame.new(frm_left){
       pack("side" => "bottom")
     }
-    
+
     frm_left_ue = TkFrame.new(frm_left){
       borderwidth 2
       relief "groove"
       pack(:side => :top)
     }
-    
+
     scr_left = TkScrollbar.new(frm_left_ue).pack(:side => :right, :fill => :y)
     @text_left = TkText.new(frm_left_ue){
       pack(:side => :left, :fill => :y)
@@ -82,7 +82,7 @@ class GuiWindow
       configure('takefocus', 0)
     }
     @text_left.yscrollbar(scr_left)
-    
+
     @btn_all   = TkButton.new(frm_left_sita){
       text 'all'
       pack('side' => 'left', 'anchor' => 's', 'padx' => 10)
@@ -92,13 +92,13 @@ class GuiWindow
       pack('side' => 'right', 'anchor' => 's', 'padx' => 10)
     }
     #--------- hidari frame --------
-    
+
     #--------- migi ----------
     frm_right = TkFrame.new{
       borderwidth 2
       relief "groove"
     }
-    
+
     scr_right = TkScrollbar.new(frm_right).pack("side" => "right", "fill" => "y")
 
     @textbox = TkText.new(frm_right){
@@ -106,7 +106,7 @@ class GuiWindow
       configure('takefocus', 0)
       pack("side" => "top", "fill" => "both", "expand" => 1)
     #---
-    #Either use 
+    #Either use
     #  bindtags(bindtags - [TkText])
     #or
     #  textbox.state "normal"
@@ -118,9 +118,9 @@ class GuiWindow
     @textbox.yscrollbar(scr_right)
     @textbox.tag_configure("tag_warn", :foreground=>'red')
     @textbox.tag_configure("tag_stderr", :foreground=>'red')
-    
+
     #--------- migi ----------
-    
+
     paned_mid.add frm_left
     paned_mid.add frm_right
     #======== middle paned ========^
@@ -138,7 +138,7 @@ class GuiWindow
     @textbox.update
   end
 
-  def add_text_err line 
+  def add_text_err line
     @textbox.insert('end', line, "tag_stderr")
     @textbox.see('end')
     @textbox.update
@@ -161,7 +161,7 @@ class GuiWindow
     @btn_run.text = "Running"
   end
 
-  
+
   def fruit_run_done
     btn_run.state = "normal"
     btn_run.text("run FRUIT")
@@ -180,8 +180,8 @@ class GuiWindow
     @btn_open_dir.command = proc{
       @core.open_dir_and_update
     }
-  
-    @btn_open_dir.bind('Return', 
+
+    @btn_open_dir.bind('Return',
       proc{
         @core.open_dir_and_update
       }
@@ -200,7 +200,7 @@ class GuiWindow
   def disable_btn_source_dir
     @btn_source_dir.state("disabled")
   end
-  
+
 
   def disable_fruitf90_select
     self.btn_fruitf90.state("disabled")
@@ -217,13 +217,13 @@ class GuiWindow
   end
 
   def btn_fruitf90_setup
-    self.btn_fruitf90.command = 
+    self.btn_fruitf90.command =
       proc{
         @core.choose_fruitf90dir(
           @core.find_file_using_btn(self.btn_fruitf90, "fruit.f90")
         )
       }
-    self.btn_fruitf90.bind('Return', 
+    self.btn_fruitf90.bind('Return',
       proc{
         @core.choose_fruitf90dir(
           @core.find_file_using_btn(self.btn_fruitf90, "fruit.f90")
@@ -260,12 +260,12 @@ class GuiWindow
   end
 
   def set_btn_clear_and_run(checks, all_f)
-    self.btn_clear.command = proc { 
+    self.btn_clear.command = proc {
       checks.each{|check|
         check.value = "nil"
       }
     }
-    self.btn_all.command = proc { 
+    self.btn_all.command = proc {
       checks.each{|check|
         check.value = 1
       }
@@ -274,7 +274,7 @@ class GuiWindow
       proc {
         @core.run_fruit(checks, all_f)
      }
-    self.btn_run.bind('Return', 
+    self.btn_run.bind('Return',
       proc {
         @core.run_fruit(checks, all_f)
       }
@@ -308,7 +308,7 @@ class GuiCore
   end
 
   def open_dir_and_update
-    tester_dir = @window.choose_dir 
+    tester_dir = @window.choose_dir
     if !tester_dir or tester_dir == ""
       @window.add_text_warn("No directry selected.\n")
       return false
@@ -334,7 +334,7 @@ class GuiCore
 
   def fetch_missing_mod(tester_dir, source_dir)
     self.if_source_exist(tester_dir) if !@esti
-    
+
     missings = []
     FileUtils.cd(tester_dir){
       missings = @esti.missing_modules - ["fruit", "fruit_util"]
@@ -381,7 +381,7 @@ class GuiCore
   def reload_all_f(tester_dir)
     checks = []
 
-    return false if !File.exist? tester_dir 
+    return false if !File.exist? tester_dir
 
     @window.add_text("Reading Directry #{tester_dir}\n")
     @window.show_dirname_of_tester(tester_dir)
@@ -421,7 +421,7 @@ class GuiCore
       check = @window.add_one_testf90(f)
       checks << check
     }
-  
+
     @source_dir = nil
     if self.if_source_exist(@tester_dir)
       @window.disable_btn_source_dir
@@ -430,7 +430,7 @@ class GuiCore
       @window.add_text_warn("Tested source not found. \nPress [Source Directry] and choose a directry that contains sources tested by the testers.\n")
       @window.enable_btn_source_dir
     end
-  
+
     self.check_if_ready
 
     @window.set_btn_clear_and_run(checks, all_f)
@@ -442,14 +442,14 @@ class GuiCore
     return @ready_fruitf90 if @ready_fruitf90
 
     if (@tester_dir and
-        File.exist?(@tester_dir + "/fruit.f90") and 
+        File.exist?(@tester_dir + "/fruit.f90") and
         File.exist?(@tester_dir + "/fruit_util.f90")
     )
       @window.add_text(
         "#{@tester_dir}/fruit.f90 and \n#{@tester_dir}/fruit_util.f90 are used.\n")
       @ready_fruitf90 = @tester_dir
     elsif (
-      @dir_fruit_f90 and 
+      @dir_fruit_f90 and
       File.exist?(@dir_fruit_f90 + "/fruit.f90") and
       File.exist?(@dir_fruit_f90 + "/fruit_util.f90")
     )
@@ -539,7 +539,7 @@ class GuiCore
       EOS
     }
   end
-  
+
   def writeout_rakefile(filename, all_f, dir_fruit_f90, dir_rake_base)
     if dir_fruit_f90
       if !File.exist?("fruit.f90")
@@ -549,7 +549,7 @@ class GuiCore
         File.symlink(dir_fruit_f90 + "/fruit_util.f90", "fruit_util.f90")
       end
     end
-  
+
     which_rake_estimate = "rake_estimate.rb"
     which_rake_base     = "rake_base.rb"
     if dir_rake_base
@@ -557,7 +557,7 @@ class GuiCore
       which_rake_base      = dir_rake_base + "/rake_base.rb"
       which_rake_base_deps = dir_rake_base + "/rake_base_deps.rb"
     end
-  
+
     files_needed = [which_rake_base, which_rake_estimate, which_rake_base_deps, "fruit.f90", "fruit_util.f90"]
     files_needed.each{|f|
       if !File.exist?(f)
@@ -565,25 +565,25 @@ class GuiCore
         return nil
       end
     }
-  
+
     File::open(filename, 'w'){|f|
       f.write <<-"EOS"
 require 'rubygems'
 require 'fruit_processor'
 require 'rake/clean'
-  
+
 include Rake::DSL if defined?(Rake::DSL)
-  
+
 fp = FruitProcessor.new
       EOS
-  
+
       f.write "fp.process_only = "
       f.write all_f.inspect
       f.write "\n"
-  
+
       f.write <<-"EOS"
 fp.pre_process
-  
+
 $build_dir = ""  #If not set, build will be done in ../build/
 $goal = "fruit_driver_gui.exe"
       EOS
@@ -595,33 +595,33 @@ $goal = "fruit_driver_gui.exe"
       f.write <<-"EOS"
 $main = "fruit_driver_gen.f90"
 load "#{which_rake_estimate}"
-  
+
 load "#{which_rake_base}"
 load "#{which_rake_base_deps}"
       EOS
-      
+
       f.write <<-'EOS'
 file 'fruit_basket_gen.' + $ext_obj => ['rakefile_gui_tester']
-  
+
 task :default => [:test]
-  
+
 task :test => $goal do
   sh "./#{$goal}"
   File.delete("fruit_basket_gen." + $ext_obj)
 end
-  
+
 task :valgrind => $goal do
   sh "valgrind --leak-check=full ./#{$goal}"
   File.delete("fruit_basket_gen." + $ext_obj)
 end
-  
+
 CLEAN.include($goal)
-  
+
       EOS
     }
     return "done"
   end
-  
+
   def run_fruit (checks, all_f)
     @window.add_text("Running FRUIT\n")
     files_to_process = []
@@ -639,11 +639,11 @@ CLEAN.include($goal)
     else
       @window.add_text(FileList[files_to_process].to_s + "\n")
     end
-  
+
     if @source_dir and @source_dir != ""
       writeout_rakefile_source(@source_dir, "rakefile_gui_src", @tester_dir)
     end
-  
+
     FileUtils.cd(@tester_dir){
       if_wrote = writeout_rakefile("rakefile_gui_tester", files_to_process, @dir_fruit_f90, @dir_rake_base)
       if not if_wrote
@@ -687,15 +687,15 @@ CLEAN.include($goal)
       @window.fruit_run_done
     }
   end
-  
+
   def find_file_using_btn (btn, file_to_find)
     dirname_got = @window.choose_dir
 
     if !dirname_got or dirname_got == ""
       @window.add_text_warn("No directry selected.\n")
-      return nil 
+      return nil
     end
-  
+
     FileUtils.cd(dirname_got){
       if File.exist?(file_to_find)
         btn.state("normal")
@@ -707,14 +707,14 @@ CLEAN.include($goal)
     }
     return nil
   end
-  
+
   def initial (window)
     @dir_fruit_f90 = nil
     @dir_rake_base = File.expand_path(File.dirname(__FILE__))
 
     @window = window
     @window.add_text(
-      "\nPress [Tester Directry] and open directry which contains " + 
+      "\nPress [Tester Directry] and open directry which contains " +
       "tester programs\n"
     )
     @window.btn_open_dir_setup
@@ -734,14 +734,14 @@ CLEAN.include($goal)
     @window.btn_fruitf90_setup
   end
 end
-  
+
 if $0 == __FILE__
   window = GuiWindow.new
   core = GuiCore.new
-  
+
   window.core = core
   core.initial(window)
-  
+
   Tk.mainloop
 end
 

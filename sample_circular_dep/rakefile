@@ -36,8 +36,8 @@ end
 
 CLEAN.include(FileList[
   'fruit_driver_gen.f90',
-  'fruit_basket_gen.f90', 
-  '*.mod', '*.o', $goal, 
+  'fruit_basket_gen.f90',
+  '*.mod', '*.o', $goal,
   '*.gcda', '*.gcno', '*.gcov'
 ])
 

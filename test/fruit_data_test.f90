@@ -23,25 +23,25 @@ contains
 
   subroutine test_assert_equals_float
     implicit none
-    
+
     real :: variable = 2.3
     real :: result = 2.3
-    
+
     call assert_equals (variable, result)
     call assert_not_Equals (variable + 0.1, result)
   end subroutine test_assert_equals_float
-  
+
   subroutine test_unit_name
     implicit none
-    
+
     character(len=300) :: result
-    
+
     call set_unit_name ('sample_unit_name')
     call get_unit_name (result)
     call assert_equals ('sample_unit_name', trim(result))
-    
+
   end subroutine test_unit_name
-  
+
   subroutine test_assert_should_handle_int_and_int_and_message
     call set_unit_name('test_assert_should_handle_int_and_int_and_message')
     call assert_equals(1,1)

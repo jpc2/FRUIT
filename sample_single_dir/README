@@ -1,7 +1,7 @@
 It's a sample of Single directory project.
 Before compile, fruit.f90, fruit_util.f90, and rake_base.rb must
 be copied to this directory.
-Fruit_processor generates fruit_driver and fruit_basket and builds driver executable. 
+Fruit_processor generates fruit_driver and fruit_basket and builds driver executable.
 
 1. Make an empty directory somewhere.
    To the directry, copy
@@ -34,7 +34,7 @@ Fruit_processor generates fruit_driver and fruit_basket and builds driver execut
 Then we can start modifying the codes (in this sample mystack.f95 and Z_constants.f95) and run test again.
 In rakefile, you have to either load "rake_estimate.rb" or
 give dependencies between mystack.o and Z_constants.o.
-In the former way, directry may contain extra main program, 
+In the former way, directry may contain extra main program,
 for example "dummy_main.f90". It will be ignored when building fruit_driver.
 
 

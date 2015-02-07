@@ -161,7 +161,7 @@ module fruit
      module procedure add_fail_
      module procedure add_fail_unit_
   end interface
- 
+
   public ::           addFail
   interface           addFail
      module procedure add_fail_
@@ -300,12 +300,12 @@ module fruit
   interface           fruit_if_case_failed
     module procedure  fruit_if_case_failed_
   end interface
- 
+
   public ::           fruit_hide_dots
   interface           fruit_hide_dots
     module procedure  fruit_hide_dots_
   end interface
- 
+
   public ::           fruit_show_dots
   interface           fruit_show_dots
     module procedure  fruit_show_dots_
@@ -366,16 +366,16 @@ contains
         write(XML_OPEN, '(      "failures=""1"" " )', advance = "no")
         write(XML_OPEN, '(      "name=""", a, """ ")', advance = "no") "name of test suite"
         write(XML_OPEN, '(      "id=""1"">")')
-  
+
         write(XML_OPEN, &
         &  '("    <testcase name=""", a, """ classname=""", a, """ time=""", a, """>")') &
         &  "dummy_testcase", "dummy_classname", "0"
-  
+
         write(XML_OPEN, '(a)', advance = "no") "      <failure type=""failure"" message="""
         write(XML_OPEN, '(a)', advance = "no") "FRUIT did not generate regular content of result.xml."
         write(XML_OPEN, '(a)')                 """/>"
         write(XML_OPEN, '("    </testcase>")')
-  
+
         write(XML_OPEN, '("  </testsuite>")')
         write(XML_OPEN, '("</testsuites>")')
       close(XML_OPEN)
@@ -838,7 +838,7 @@ contains
     logical,      intent(in)           :: if_is
     character(*), intent(in), optional :: message
 
-    msg = '[' // trim(strip(case_name)) // ']: ' 
+    msg = '[' // trim(strip(case_name)) // ']: '
     if (if_is) then
       msg = trim(msg) //     'Expected'
     else

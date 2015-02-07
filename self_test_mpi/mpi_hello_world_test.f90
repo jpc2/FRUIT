@@ -15,7 +15,7 @@ contains
 
     call MPI_COMM_SIZE (MPI_COMM_WORLD, size, ierror)
     call MPI_COMM_RANK (MPI_COMM_WORLD, rank, ierror)
-  
+
     call hello_world(size, rank, host)
 
     allocate(host_rank(0:size - 1))
@@ -25,7 +25,7 @@ contains
     & host_rank(0), len_host, MPI_CHARACTER, &
     & 0, MPI_COMM_WORLD, ierror &
     &)
-  
+
     if (rank == 0) then
       do i = 0, size - 1
         write(*, '("rank:", i3, " hostname:", a)') i, trim(host_rank(i))

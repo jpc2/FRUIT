@@ -33,7 +33,7 @@ contains
 
     mystack_length = sta%length
   end function mystack_length
-  
+
   subroutine mystack_push(sta, value)
     type(ty_mystack), intent(inout) :: sta
     real, intent(in) :: value
@@ -63,7 +63,7 @@ contains
 
     sta%value(sta%length) = value
   end subroutine mystack_push
-  
+
   subroutine mystack_pull(sta, value)
     type(ty_mystack), intent(inout) :: sta
     real, intent(out) :: value

@@ -9,7 +9,7 @@ contains
     call mystack_new(stack)
     call assert_equals(0, mystack_length(stack))
     call mystack_final(stack)
-  end subroutine test_mystack_new 
+  end subroutine test_mystack_new
 
   subroutine test_mystack_push
     use mystack

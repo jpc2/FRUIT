@@ -5,7 +5,7 @@ include Rake::DSL if defined?(Rake::DSL)
 load "../rake_base_mpi.rb"
 
 $build_dir = ""  #If not set, build will be done in ../build/
-$source_dirs = ["../src", "./"]  
+$source_dirs = ["../src", "./"]
                #"../src" is for fruit.f90, fruit_mpi.f90, and fruit_util.f90
 $goal = "fruit_driver_mpi.exe"
 

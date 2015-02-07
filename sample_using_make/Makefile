@@ -27,7 +27,7 @@ fruit_driver_gen.f90 : $(code)
 fruit_driver.exe : $(all_code)
 	$(compiler) $(option) $(all_code) -o fruit_driver.exe
 
-clean : 
+clean :
 	rm -f *.o *.mod *.obj *.exe
 	rm -f fruit_driver_gen.f90
 	rm -f fruit_basket_gen.f90
@@ -35,8 +35,8 @@ clean :
 
 run : $(driver)
 	./$(driver)
-	
-	
+
+
 
 .PHONY : all clean run
 

@@ -22,7 +22,7 @@ open("stdout", "r"){|f|
 
     if line =~ /message: \[rank=  0\]/
       num_rank_zero += 1
-      if flag == 1 
+      if flag == 1
         print "OK, message is between the lines\n"
         rank_zero_ok = 1
       else
@@ -33,7 +33,7 @@ open("stdout", "r"){|f|
 
     if line =~ /message: \[rank=  1\]/
       num_rank_one += 1
-      if flag == 1 
+      if flag == 1
         print "OK, message is between the lines\n"
         rank_one_ok = 1
       else

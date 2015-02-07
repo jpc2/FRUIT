@@ -41,7 +41,7 @@ task :test => $goal do
   elem_needed = 'testsuites/testsuite/testcase/failure'
   begin
     puts doc.elements[ elem_needed ].text
-  rescue 
+  rescue
     raise elem_needed + " absent."
   else
     puts "FRUIT successfully generated xml with a failure"

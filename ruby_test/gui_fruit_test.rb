@@ -4,7 +4,7 @@ require 'test/unit'
 require '../gui_fruit'
 
 class DummyWindow
-  
+
   def add_text string
   # p string
   end
@@ -38,7 +38,7 @@ class DummyWindow
   # puts "  adding tester " + filename
     return "dummy_check"
   end
- 
+
   def enable_fruitf90_select
   end
   def disable_fruit_run
@@ -91,10 +91,10 @@ class GuiCoreTest < Test::Unit::TestCase
     core.initial(window)
 
     assert_equal(
-      File.expand_path(File.dirname("../gui_fruit.rb")), 
+      File.expand_path(File.dirname("../gui_fruit.rb")),
       core.show_dir_rake_base
     )
-    
+
   end
 
   def test_open_dir_and_update
@@ -119,11 +119,11 @@ class GuiCoreTest < Test::Unit::TestCase
     core = GuiCore.new
     window = DummyWindow.new
     core.initial(window)
-    
+
     dir = "./dir only tested"
     ["fruit_baket_gen.f90", "fruit_driver_gen.f90"].each{|f|
       dirf =  dir + "/" + f
-      File.unlink dirf if File.exist? dirf 
+      File.unlink dirf if File.exist? dirf
     }
     all_f = core.reload_all_f("./dir only tested")
     assert_equal([], all_f)
@@ -174,7 +174,7 @@ class GuiCoreTest < Test::Unit::TestCase
     build_dir = "./dir_only_tester"
 
     dir = "dir only tested"
-    name = "rakefile_gui_tmp" 
+    name = "rakefile_gui_tmp"
     target = dir + "/" + name
     File.unlink target if File.exist? target
 

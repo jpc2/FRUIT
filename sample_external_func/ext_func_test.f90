@@ -8,7 +8,7 @@ contains
       function add_one(i)
         integer add_one
         integer :: i
-      end function add_one  
+      end function add_one
     end interface
 
     i_result = add_one(5)

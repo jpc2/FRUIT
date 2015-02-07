@@ -27,8 +27,8 @@ end
 
 desc "Publish package"
 task :publish => :pack do
-  Net::FTP.open("upload.sourceforge.net", 
-     "ftp", 
+  Net::FTP.open("upload.sourceforge.net",
+     "ftp",
      #ENV['USER']+"@"+ENV['HOSTNAME']) {
      "fruit@test.com") {
      |ftpclient|
