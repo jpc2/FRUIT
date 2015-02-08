@@ -16,14 +16,24 @@ module RakeBase
 		$prof_genx = "-prof-genx"
     $mpiexec = nil
   else
-    # Intel FORTRAN on Windows
-    $compiler = 'ifort'
-    $option = "/check:all /warn:all /fpp"
+    # Lahey LF95 FORTRAN on Windows
+    $compiler = 'lf95'
+    $option = "-chk -g -stchk -trace -w -info"
     $ext_obj = "obj"
+    $option_exe = "-out "
     $dosish_path = true
-    $gcov = false
-		$prof_genx = "/Qprof-genx"
-    $mpiexec = nil
+    #$gcov = false
+		#$prof_genx = "/Qprof-genx"
+    #$mpiexec = nil
+
+    # Intel FORTRAN on Windows
+    #$compiler = 'ifort'
+    #$option = "/check:all /warn:all /fpp"
+    #$ext_obj = "obj"
+    #$dosish_path = true
+    #$gcov = false
+		#$prof_genx = "/Qprof-genx"
+    #$mpiexec = nil
   end
 
 
