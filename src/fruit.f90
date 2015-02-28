@@ -69,7 +69,7 @@ module fruit
   logical, private, save :: if_show_dots = .true.
 
   integer, parameter :: FRUIT_PREFIX_LEN_MAX = 50
-  character(len = FRUIT_PREFIX_LEN_MAX) :: prefix = ""
+  character(len = FRUIT_PREFIX_LEN_MAX) :: prefix = ''
   !---------- save ----------
 
   type ty_stack
@@ -850,7 +850,7 @@ contains
   subroutine get_message_array_(msgs)
     character(len = *), intent(out) :: msgs(:)
     integer :: i
-    msgs(:) = ""
+    msgs(:) = ''
 
     do i = 1, message_index - 1
       msgs(i) = trim(strip(message_array(i)))
@@ -862,7 +862,7 @@ contains
     character(len = *), intent(out) :: msgs(:)
     integer :: i, j
 
-    msgs(:) = ""
+    msgs(:) = ''
     do i = message_index_from, message_index - 1
       j = i - message_index_from + 1
       if (j > ubound(msgs, 1)) exit
@@ -1141,7 +1141,7 @@ contains
   subroutine assert_eq_logical_(var1, var2, message)
 
     logical, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
 
         if (var1 .neqv. var2) then
@@ -1159,7 +1159,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     logical, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if (var1(i) .neqv. var2(i)) then
@@ -1177,7 +1177,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     logical, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1196,7 +1196,7 @@ contains
   subroutine assert_eq_string_(var1, var2, message)
 
     character (len = *), intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
 
         if (trim(strip(var1)) /= trim(strip(var2))) then
@@ -1214,7 +1214,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     character (len = *), intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if (trim(strip(var1(i))) /= trim(strip(var2(i)))) then
@@ -1232,7 +1232,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     character (len = *), intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1251,7 +1251,7 @@ contains
   subroutine assert_eq_int_(var1, var2, message)
 
     integer, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
 
         if (var1 /= var2) then
@@ -1269,7 +1269,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     integer, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if (var1(i) /= var2(i)) then
@@ -1287,7 +1287,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     integer, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1306,7 +1306,7 @@ contains
   subroutine assert_eq_real_(var1, var2, message)
 
     real, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
 
         if ((var1 < var2) .or. (var1 > var2)) then
@@ -1341,7 +1341,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     real, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
@@ -1377,7 +1377,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     real, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1416,7 +1416,7 @@ contains
   subroutine assert_eq_double_(var1, var2, message)
 
     double precision, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
 
         if ((var1 < var2) .or. (var1 > var2)) then
@@ -1451,7 +1451,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     double precision, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if ((var1(i) < var2(i)) .or. (var1(i) > var2(i))) then
@@ -1487,7 +1487,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     double precision, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1526,7 +1526,7 @@ contains
   subroutine assert_eq_complex_(var1, var2, message)
 
     complex(kind=kind(1.0D0)), intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
 
         if ((real (var1) < real (var2)) .or. &
@@ -1564,7 +1564,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     do i = 1, n
         if ((real (var1(i)) < real (var2(i))) .or. &
@@ -1603,7 +1603,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     do j = 1, m
       do i = 1, n
@@ -1645,7 +1645,7 @@ contains
   subroutine assert_not_equals_logical_(var1, var2, message)
 
     logical, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1669,7 +1669,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     logical, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1693,7 +1693,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     logical, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1718,7 +1718,7 @@ contains
   subroutine assert_not_equals_string_(var1, var2, message)
 
     character (len = *), intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1742,7 +1742,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     character (len = *), intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1766,7 +1766,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     character (len = *), intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1791,7 +1791,7 @@ contains
   subroutine assert_not_equals_int_(var1, var2, message)
 
     integer, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1815,7 +1815,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     integer, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1839,7 +1839,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     integer, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1864,7 +1864,7 @@ contains
   subroutine assert_not_equals_real_(var1, var2, message)
 
     real, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1911,7 +1911,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     real, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -1959,7 +1959,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     real, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2010,7 +2010,7 @@ contains
   subroutine assert_not_equals_double_(var1, var2, message)
 
     double precision, intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2057,7 +2057,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     double precision, intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2105,7 +2105,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     double precision, intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2156,7 +2156,7 @@ contains
   subroutine assert_not_equals_complex_(var1, var2, message)
 
     complex(kind=kind(1.0D0)), intent (in) :: var1, var2
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2206,7 +2206,7 @@ contains
     integer, intent (in) :: n
     integer              :: i
     complex(kind=kind(1.0D0)), intent (in) :: var1(n), var2(n)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 
@@ -2257,7 +2257,7 @@ contains
     integer, intent (in) :: n, m
     integer              :: i, j
     complex(kind=kind(1.0D0)), intent (in) :: var1(n, m), var2(n, m)
-
+    
     character(len = *), intent (in), optional :: message
     logical :: same_so_far
 

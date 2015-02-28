@@ -18,7 +18,9 @@ module RakeBase
   else
     # Lahey LF95 FORTRAN on Windows
     $compiler = 'lf95'
-    $option = "-chk -g -stchk -trace -w -info"
+    $option = "-chk -g -stchk -trace -w -info -nco -nologo"
+    #$option = "-chk -g -stchk -trace -w -info"
+    #$option = "-chk -g -stchk -trace -w -info"
     $ext_obj = "obj"
     $option_exe = "-out "
     $dosish_path = true

@@ -69,7 +69,7 @@ module fruit
   logical, private, save :: if_show_dots = .true.
 
   integer, parameter :: FRUIT_PREFIX_LEN_MAX = 50
-  character(len = FRUIT_PREFIX_LEN_MAX) :: prefix = ""
+  character(len = FRUIT_PREFIX_LEN_MAX) :: prefix = ''
   !---------- save ----------
 
   type ty_stack
@@ -738,7 +738,7 @@ contains
   subroutine get_message_array_(msgs)
     character(len = *), intent(out) :: msgs(:)
     integer :: i
-    msgs(:) = ""
+    msgs(:) = ''
 
     do i = 1, message_index - 1
       msgs(i) = trim(strip(message_array(i)))
@@ -750,7 +750,7 @@ contains
     character(len = *), intent(out) :: msgs(:)
     integer :: i, j
 
-    msgs(:) = ""
+    msgs(:) = ''
     do i = message_index_from, message_index - 1
       j = i - message_index_from + 1
       if (j > ubound(msgs, 1)) exit

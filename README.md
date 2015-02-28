@@ -41,7 +41,7 @@ Samples:
     A sample of manually written driver.
     See -
 	https://sourceforge.net/apps/mediawiki/fortranxunit/index.php?title=FruitExample
-	This link is dead.
+	**This link is dead.**
 
     * fruit.f90 and fruit_util.f90 must be copied to in_3_minutes beforehand.
 
