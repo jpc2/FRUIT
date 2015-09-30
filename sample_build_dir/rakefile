@@ -22,5 +22,6 @@ end
 
 task :default => [:main, :test]
 
-CLEAN.include(FileList['**/*.o', '**/*.mod', '**/*.exe'])
-CLEAN.include(FileList['fruit_driver_gen.f90', 'fruit_basket_gen.f90'])
+CLEAN.include(FileList['**/*.o', '**/*.obj', '**/*.map', '**/*.mod', '**/*.ydg', '**/*.exe'])
+CLEAN.include(FileList['**/fruit_driver_gen.f90', '**/fruit_basket_gen.f90'])
+CLEAN.include(FileList['**/result*.xml', '**/*.fwd'])

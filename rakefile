@@ -67,6 +67,7 @@ task :default => [ :self_test ]
 
 CLEAN.include(FileList[
   '**/*.o', '**/*.obj', '**/*.mod', '**/*.a', '**/*_gen.f90', '**/*fruit_driver',
+  '**/*.map', '**/*.ydg', '**/*.fwd',
   '**/result*.xml',
   '**/fruit_driver_fxx.exe',
   '**/fruit_driver.exe',
@@ -103,7 +104,7 @@ CLOBBER.include(FileList['src/fruit.f90'])
 CLOBBER.include($build_dir)
 CLOBBER.include("ROOT_ANCHOR")
 
-desc "Complie src/fruit*.f90 and build build/libfruit.a"
+desc "Compile src/fruit*.f90 and build build/libfruit.a"
 task :compile => [:anchor_root, :fruit_f90] do
   if $ar_ok
     Dir.chdir("src") do

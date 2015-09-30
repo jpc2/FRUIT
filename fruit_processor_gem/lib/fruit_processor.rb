@@ -215,6 +215,7 @@ class FruitProcessor
               f.write "    call setup\n"
             end
           end
+          f.write "    write(*,*) \n" # so we always are starting on a new line.
           f.write "    write (*, *) \"  ..running test: #{method_name}\"\n"
           f.write "    call set_unit_name('#{method_name}')\n"
           f.write "    call run_test_case (#{method_name}, &\n"

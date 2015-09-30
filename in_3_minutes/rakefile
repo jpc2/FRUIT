@@ -22,6 +22,16 @@ task :test => [:clean] do
   sh "./#{$goal}"
 end
 
-CLEAN.include(FileList["fruit.f90", "fruit_util.f90", $goal])
+CLEAN.include(
+  FileList[
+    "fruit.f90",
+    "fruit_util.f90",
+    $goal,
+    "*.fwd",
+    "*.mod",
+    "*.map",
+    "*.obj",
+    "*.ydg",
+])
 
 

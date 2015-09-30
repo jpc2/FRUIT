@@ -12,8 +12,8 @@ contains
   subroutine setup
   end subroutine setup
 
-  ! teardown_before_all
-  ! teardown = teardown_before_each
+  ! teardown_after_all
+  ! teardown = teardown_after_each
   subroutine teardown
   end subroutine teardown
 

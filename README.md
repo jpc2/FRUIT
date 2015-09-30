@@ -1,4 +1,11 @@
-Installation guide:
+This is a clone of FRUIT_3.3.7.
+I'm new to Ruby, Rake and Cucumber.  But this looks like a good start for some testing I need to do in porting some legacy code to a new compiler.  Also looks like a good way to learn more about Ruby and friends.
+
+I don't have plans at the moment to do a lot with the internals of FRUIT beyond getting it to work reliably with the Lahey 7.0 Compiler. I fix things here when I need to.
+
+
+ # Original README
+ #Installation guide:
 -------------------
 	1. Untar the gz file
 
@@ -32,8 +39,11 @@ Samples:
 --------
   in_3_minutes
     A sample of manually written driver.
-    see https://sourceforge.net/apps/mediawiki/fortranxunit/index.php?title=FruitExample
     * fruit.f90 must be copied to in_3_minutes beforehand.
+
+    See -
+    https://sourceforge.net/apps/mediawiki/fortranxunit/index.php?title=FruitExample
+    **This link is dead.**
 
   sample
     Multi-directry test.

@@ -17,6 +17,7 @@ $lib_bases = [
 ['fruit', fp.build_dir],
 ['calculator', fp.build_dir]
 ]
+puts "./test/rakefile: #{$lib_bases}"
 
 # if $build_dir is defined, then use build_dir
 
