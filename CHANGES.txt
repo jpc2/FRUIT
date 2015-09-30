@@ -1,4 +1,27 @@
 -----------
+FRUIT 3.3.9
+-----------
+
+Content of fruit_util.f90 is added into fruit.f90.
+No changes in fruit_processor in this version.
+Version number of fruit_processor remains 3.3.8.
+
+
+-----------
+FRUIT 3.3.8
+-----------
+
+Fruit_processor failed to recognize the subroutine
+when "!" appears on the line tester subroutine name declared.
+
+For example, on this code
+   subroutine test_some_routine !comment
+     ...
+   end subroutine
+tester "test_some_routine" was ignored.
+This behavior of fruit_processor is fixed now.
+
+----------
 FRUIT 3.3.7.1
 -----------
 

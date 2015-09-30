@@ -23,7 +23,7 @@ CLOBBER.include(FileList['pkg/*.gem'])
 spec = Gem::Specification.new do |s|
   s.platform  =   Gem::Platform::RUBY
   s.name      =   "fruit_processor"
-  s.version   =   "3.3.6"
+  s.version   =   "3.3.8"
   s.author    =   "Andrew Chen"
   s.email     =   "meihome meihome.com"
   s.summary   =   "A package for fortranxunit (fruit)."
@@ -61,8 +61,12 @@ task :default => [:clean, :test, "pkg/#{spec.name}-#{spec.version}.gem"] do
 end
 
 task :install => :default do
-  str = "gem install pkg/#{spec.name}-#{spec.version}.gem"
-  p str
+  #str = "gem install pkg/#{spec.name}-#{spec.version}.gem"
+  #p str
+  puts "  If you have error message \"invalid byte sequence UTF-8\""
+  puts "  especially on cygwin before ruby 2.1, try "
+  puts "    export LANG=\"\""
+  puts "  before gem install"
   sh "gem install pkg/#{spec.name}-#{spec.version}.gem"
 end
 
